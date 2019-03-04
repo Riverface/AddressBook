@@ -54,40 +54,48 @@ Contact.prototype.parsedID = function(){
 
 Contact.prototype.stringPrint = function() {
   //starting print var
+  var stringToPrint = "";
 
-  this.stringPrint = "";
   //adding HTML id based on first name and last name
-  this.stringPrint += "<div  class='container'>";
+  stringToPrint += "<div  class=''>";
   console.log(this.parsedID());
   //add first name to string
-  this.stringPrint += "<a class='buttonlikething' id='" + this.parsedID() + "-button'" + "><div class='animated entryLabel'>"  + this.fullName() + "</div></a>";
-  this.stringPrint +=  "<div class='animated entry ' id=\'" + this.parsedID() + "\'><div class='animated propertyLabel name '> First name </div>";
-  this.stringPrint += " <div class='animated property'>" + this.firstName + "</div>";
+  stringToPrint += "<div class='animated entryLabel'> <a class='buttonlikething' id='" + this.parsedID() + "-button" + this.id + "' >" + this.fullName() + "</a><a value='x' class='labelclose btn-default'id='" + this.parsedID() + this.id + "-close'>x</a> </div></div></div> </div>";
+  stringToPrint +=  "<div class='animated entry ' id=\'" + this.parsedID() + "\'><div class='animated propertyLabel name '> First name </div>";
+  stringToPrint += " <div class='animated property'>" + this.firstName + "</div>";
   //add last name to string
-  this.stringPrint += "<div class='animated propertyLabel name title'> Last Name </div>";
-  this.stringPrint += "<div class='animated property '> <span class='nes-text is-default'>" + this.lastName + "</span></div>";
+  stringToPrint += "<div class='animated propertyLabel name title'> Last Name </div>";
+  stringToPrint += "<div class='animated property '> <span class='nes-text is-default'>" + this.lastName + "</span></div>";
   //add phone number to string
-  this.stringPrint += "<br><div class='animated propertyLabel phoneNumber'> Phone Number</div><div class=' animated property'>" + this.phoneNumber;
+  stringToPrint += "<br><div class='animated propertyLabel phoneNumber'> Phone Number</div><div class=' animated property'>" + this.phoneNumber;
   //add video games to string
   //add closing divs
-  this.stringPrint += "</div></div>";
-
-  return this.stringPrint;
+  stringToPrint += "</div></div>";
+  return stringToPrint;
 }
 
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
-function addCollapseToggle(id){
+function addCollapseToggle(cTact, parsed, id){
   console.log("did it");
-  $("#"+id + "-button").click(function(){
-    $("#"+id).toggle();
+  $("#"+parsed + "-button" + id).click(function(){
+    $("#"+parsed).toggle();
     console.log("click created");
   });
   console.log("#"+id + "-button");
 }
 
-
+function addClose(cTact, parsed, id){
+  console.log("did it");
+      console.log(cTact, parsed, id);
+  $("#" + parsed + id + "-close").click(function(){
+    addressBook.deleteContact(id);
+    BookRefresh(addressBook);
+    console.log("click created");
+  });
+  console.log("#"+ cTact.parsedID() + "-button");
+}
 var addressBook = new AddressBook();
 $(document).ready(function() {
   var storedVolume = 0;
@@ -97,17 +105,18 @@ $(document).ready(function() {
   vid.volume = 0.025;
 
 
-  BookRefresh();
+  BookRefresh(addressBook);
 
 
   $("#newContactForm").submit(function(event){
 
-      event.preventDefault();
-      newContact = new Contact($("#fName").val(), $("#lName").val(),$("#pNumber").val() );
-      addressBook.addContact(newContact);
-      //addressBook.contacts[contactIndex] = newContact;
-      $("#entries").append(newContact.stringPrint());
-          addCollapseToggle( newContact.parsedID());
+    event.preventDefault();
+    newContact = new Contact($("#fName").val(), $("#lName").val(),$("#pNumber").val() );
+    addressBook.addContact(newContact);
+    //addressBook.contacts[contactIndex] = newContact;
+    $("#entries").append(newContact.stringPrint());
+    addCollapseToggle(newContact, newContact.parsedID(), newContact.id);
+        addClose(newContact, newContact.parsedID(), newContact.id);
   });
 
 
@@ -123,11 +132,15 @@ $(document).ready(function() {
   });
 
 });
-function BookRefresh()
+function BookRefresh(aB)
 {
-  addressBook.contacts.forEach(function(contactIndex){
+
+  $("#entries").html("");
+  aB.contacts.forEach(function(contactIndex){
     console.log(contactIndex);
     $("#entries").append(contactIndex.stringPrint());
-    addCollapseToggle( contactIndex.parsedID());
+    addCollapseToggle(contactIndex, contactIndex.parsedID(), contactIndex.id);
+    addClose(contactIndex, contactIndex.parsedID(), contactIndex.id);
+
   });
 }

@@ -10,7 +10,7 @@
   background-color: pink;
   animation-duration: 7s;
   font-family: 'Press Start 2P';
-
+user-select: none;
 }
 .animated
 {
@@ -30,7 +30,7 @@
   border-radius: 10px;
   padding-top: 50px;
   border-top: 0px;
-  margin-right: 0;
+
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
   padding: 5px;
@@ -152,12 +152,14 @@
 .btn-default{
   border:4px outset;
   border-radius: 5px;
-
+  padding: 2px;
+  user-select: none;
 }
 .btn
 {
   width: 150px;
   cursor: crosshair;
+  user-select: none;
 }
 #newContactForm{
 
@@ -179,4 +181,12 @@ body{
 }
 .container{
 
+}
+.labelclose{
+
+align-content: right;
+align-self: right;
+margin-left: 50px;
+  cursor: crosshair;
+  user-select: none;
 }
