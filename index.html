@@ -43,38 +43,41 @@
     <hr>
   </div>
 
-<form id="newContactForm">
-<div class="entryLabel">
-  Add a contact
+<form id="newContactForm" class="animated transform" style:"animation-duration: 10s;" >
+<div class="entryLabel animated" style:"animation-duration: 10s;">
+  <a type="button" id="contactLabel">Add a contact</a>
 </div>
-  <div class="entry">
-  <div class="propertyLabel">
+  <div class="animated container entry  " style="height: 370px" id="newCBody">
+  <div class="animated propertyLabel">
     First Name
 </div>
-
-<div class="property">
-  <input id="fName" type="text" class="btn" name="" value="Name">
+<fieldset>
+<div class="animated property">
+  <input id="fName" type="text" class="btn" name="" tabindex="0" value="Name" onLoad="setfocus()">
   </input>
 </div>
-<div class="propertyLabel">
+<div class="animated propertyLabel">
   Last Name
 </div>
 
-<div class="property">
-  <input id="lName" type="text" class="btn" name="" value="Name">
+<div class="animated property">
+  <input id="lName" type="text" class="btn" name="" tabindex="1" value="Name">
   </input>
 </div>
-<div class="propertyLabel">
+<div class="animated propertyLabel">
   Phone Number
 </div>
 
-<div class="property">
-  <input id="pNumber" type="text" class="btn" name="" value="5932872372">
+<div class="animated property">
+  <input id="pNumber" type="text" class="btn" name="" tabindex="2" value="5932872372">
   </input>
 </div>
-<input type="submit" class="btn-default" style="margin-left: 20px; margin-bottom: 10px; width:100px;" name="button" method="get">
+</fieldset>
+<div>
+<input type="submit" class="animated btn-default" style="margin-left: 20px; margin-bottom: 10px; width:100px;" name="button" method="get">
 
 </input>
+
 </div>
 </div>
 </form>

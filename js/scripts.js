@@ -106,7 +106,11 @@ $(document).ready(function() {
 
 
   BookRefresh(addressBook);
-
+  $("#contactLabel").click(function(){
+    $("#newCBody").toggle();
+    console.log("click created");
+      $('.transform').toggleClass('transform-active');
+  });
 
   $("#newContactForm").submit(function(event){
 

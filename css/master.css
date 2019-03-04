@@ -80,14 +80,14 @@ user-select: none;
 }
 
 #entries{
-  width: 800px;
+  width: 400px;
   margin: 100px;
   border: 4px inset;
   border-radius: 10px;
   padding: 10px;
   background-color: lightgrey;
   font-family: 'Press Start 2P';
-  animation-duration: 20s;
+
 }
 
 @keyframes example {
@@ -162,7 +162,7 @@ user-select: none;
   user-select: none;
 }
 #newContactForm{
-
+  animation-duration: 50s;
   position:fixed;
   right:100px;
   bottom: 20%;
@@ -189,4 +189,13 @@ align-self: right;
 margin-left: 50px;
   cursor: crosshair;
   user-select: none;
+}
+
+.transform
+{
+transition: all 1s ease;
+margin-bottom: 0px;
+}
+.transform-active{
+margin-bottom: -640px;
 }
